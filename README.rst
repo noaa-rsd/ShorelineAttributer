@@ -36,4 +36,4 @@ Second, install the Geopandas package with the following command (at the Anacond
 
 Point ArcPro to the newly created CUSP Ruler Python environment, as shown below:
 
-.. image:: ./support_files/installation.png
+.. image:: ./support/installation.png
