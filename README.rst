@@ -1,7 +1,7 @@
 Shoreline Attributer
 --------------------
 
-Shoreline Attributer is a NOAA Remote Sensing Division ArcPro tool that attributes line features in a shapefile according to user-specified CUSP schema attributes.
+Shoreline Attributer is an ArcPro Python tool that attributes line features according to a subset of the CUSP schema.
 
 Installation
 ============
