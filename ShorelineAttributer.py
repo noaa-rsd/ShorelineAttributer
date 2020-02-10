@@ -31,7 +31,7 @@ class ShorelineTile():
             if attr != 'SRC_DATE':
                 self.gdf[attr] = self.__dict__[attr]
             elif attr == 'SRC_DATE':  # dytpe is datetime64 (can't be)
-                self.gdf[attr] = datetime.strftime(self.__dict__[attr], '%Y%m')
+                self.gdf[attr] = datetime.strftime(self.__dict__[attr], '%Y%m%d')
 
     def apply_state_region_attributes(self, state_regions):
         if state_regions.shape[0] == 1:
