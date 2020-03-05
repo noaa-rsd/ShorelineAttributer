@@ -63,6 +63,13 @@ class ShorelineTile():
             df = pd.concat(shoreline_gdfs, ignore_index=True)
             self.gdf = gpd.GeoDataFrame(df, geometry='geometry', crs=self.gdf.crs)
 
+    def smooth(self):
+        pass
+
+    def simplify(self):
+        cusp['geometry'] = cusp.geometry.simplify(tolerance=simp,
+                                                      preserve_topology=False)
+
     def get_overlapping_state_regions(self, state_regions):
         sindex = state_regions.to_crs(self.gdf.crs).sindex
         extents = self.get_tile_extents()
