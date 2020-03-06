@@ -3,6 +3,7 @@ import pandas as pd
 import geopandas as gpd
 from pathlib import Path
 import arcpy
+import arcpy.cartography as CA
 from datetime import datetime
 from shapely.geometry import Polygon, MultiLineString
 
@@ -63,12 +64,12 @@ class ShorelineTile():
             df = pd.concat(shoreline_gdfs, ignore_index=True)
             self.gdf = gpd.GeoDataFrame(df, geometry='geometry', crs=self.gdf.crs)
 
-    def smooth(self):
-        pass
-
     def simplify(self):
-        cusp['geometry'] = cusp.geometry.simplify(tolerance=simp,
-                                                      preserve_topology=False)
+        self.gdf['geometry'] = self.gdf.geometry.simplify(tolerance=0.25,
+                                                          preserve_topology=False)
+
+    def smooth_esri():
+        arcpy.FromWKT(MultiLineString(list(self.gdf.geometry)).wkt)
 
     def get_overlapping_state_regions(self, state_regions):
         sindex = state_regions.to_crs(self.gdf.crs).sindex
@@ -91,8 +92,6 @@ def set_env_vars(env_name):
     user_dir = os.path.expanduser('~')
     path_parts = ('AppData', 'Local', 
                   'Continuum', 'anaconda3')
-    #path_parts = ('AppData', 'Local', 
-    #              'conda', 'conda')
     conda_dir = Path(user_dir).joinpath(*path_parts)
     env_dir = conda_dir / 'envs' / env_name
     share_dir = env_dir / 'Library' / 'share'
@@ -107,7 +106,7 @@ def set_env_vars(env_name):
 
 
 if __name__ == '__main__':
-    set_env_vars('shoreline')
+    set_env_vars('shore_att')
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
     schema_path = Path(r'.\shoreline_schema.json')
@@ -135,6 +134,10 @@ if __name__ == '__main__':
             arcpy.AddMessage('applying tile-wide attributes...')
             slt.apply_tile_attributes()
 
+            #slt.smooth_esri()
+
             arcpy.AddMessage('outputing attributed gdf...')
-            out_path = Path(slt.out_dir.value) / '{}_ATTRIBUTED.shp'.format(shp.stem)
-            slt.export(out_path)
+            out_path = Path(slt.out_dir.value) / '{}_ATTRIBUTED_.shp'.format(shp.stem)
+            slt.export(str(out_path))
+
+            gdf['geometry'] = gdf.geometry.simplify(tolerance=0.25, preserve_topology=False)
