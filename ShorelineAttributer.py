@@ -6,6 +6,7 @@ import arcpy
 import arcpy.cartography as CA
 from datetime import datetime
 from shapely.geometry import Polygon, MultiLineString
+from shapely import wkt, wkb
 
 from Schema import Schema
 
@@ -15,13 +16,19 @@ class ShorelineTile():
     def __init__(self, params, schema):
         self.set_params(params)
         self.schema = schema
+        self.path = None
+        self.srs = None
         self.gdf = None
+        self.simp_tolerance = 0.25
+        self.smooth_threshold = 5
 
     def set_params(self, params):
         for i, p in enumerate(params):
             self.__dict__[p.name] = p.value
 
     def populate_gdf(self, shp):
+        self.path = shp.parent / (arcpy.ValidateTableName(shp.stem) + '.shp')
+        self.srs = arcpy.Describe(str(shp)).spatialReference
         self.gdf = gpd.read_file(str(shp))
 
     def export(self, out_path):
@@ -65,11 +72,15 @@ class ShorelineTile():
             self.gdf = gpd.GeoDataFrame(df, geometry='geometry', crs=self.gdf.crs)
 
     def simplify(self):
-        self.gdf['geometry'] = self.gdf.geometry.simplify(tolerance=0.25,
+        self.gdf['geometry'] = self.gdf.geometry.simplify(tolerance=self.simp_tolerance,
                                                           preserve_topology=False)
 
-    def smooth_esri():
-        arcpy.FromWKT(MultiLineString(list(self.gdf.geometry)).wkt)
+    def smooth_esri(self):
+        geom_bytearray = bytearray(MultiLineString(list(self.gdf.geometry)).wkb)
+        arc_geom = arcpy.FromWKB(geom_bytearray, self.srs)
+        smoothed_geom = CA.SmoothLine(arc_geom, arcpy.Geometry(), "PAEK", self.smooth_threshold)
+        geom_wkb = bytes(smoothed_geom[0].WKB)
+        self.gdf = gpd.GeoDataFrame(geometry=[wkb.loads(geom_wkb)], crs=self.gdf.crs).explode()
 
     def get_overlapping_state_regions(self, state_regions):
         sindex = state_regions.to_crs(self.gdf.crs).sindex
@@ -86,7 +97,6 @@ class ShorelineTile():
         poly_coords = [(minx, miny), (minx, maxy), 
                        (maxx, maxy), (maxx, miny)]
         return Polygon(poly_coords)
-
 
 def set_env_vars(env_name):
     user_dir = os.path.expanduser('~')
@@ -106,6 +116,7 @@ def set_env_vars(env_name):
 
 
 if __name__ == '__main__':
+
     set_env_vars('shore_att')
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
@@ -124,6 +135,12 @@ if __name__ == '__main__':
         arcpy.AddMessage('{} ({} of {})...'.format(shp.name, i, num_shps))
         slt.populate_gdf(shp)
 
+        arcpy.AddMessage('simplifying...')
+        slt.simplify()
+
+        arcpy.AddMessage('smoothing...')
+        slt.smooth_esri()
+
         if not slt.gdf.empty:
             arcpy.AddMessage('determining overlapping state NOAA regions...')
             tile_state_regions = slt.get_overlapping_state_regions(state_regions)
@@ -134,10 +151,6 @@ if __name__ == '__main__':
             arcpy.AddMessage('applying tile-wide attributes...')
             slt.apply_tile_attributes()
 
-            #slt.smooth_esri()
-
             arcpy.AddMessage('outputing attributed gdf...')
             out_path = Path(slt.out_dir.value) / '{}_ATTRIBUTED_.shp'.format(shp.stem)
             slt.export(str(out_path))
-
-            gdf['geometry'] = gdf.geometry.simplify(tolerance=0.25, preserve_topology=False)
