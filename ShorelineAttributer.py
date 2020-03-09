@@ -19,8 +19,8 @@ class ShorelineTile():
         self.path = None
         self.srs = None
         self.gdf = None
-        self.simp_tolerance = 0.25
-        self.smooth_threshold = 5
+        #self.Simplification_Tolerance from self.set_params
+        #self.Smoothing_Threshold from self.set_params
 
     def set_params(self, params):
         for i, p in enumerate(params):
@@ -72,13 +72,13 @@ class ShorelineTile():
             self.gdf = gpd.GeoDataFrame(df, geometry='geometry', crs=self.gdf.crs)
 
     def simplify(self):
-        self.gdf['geometry'] = self.gdf.geometry.simplify(tolerance=self.simp_tolerance,
+        self.gdf['geometry'] = self.gdf.geometry.simplify(tolerance=self.Simplification_Tolerance,
                                                           preserve_topology=False)
 
     def smooth_esri(self):
         geom_bytearray = bytearray(MultiLineString(list(self.gdf.geometry)).wkb)
         arc_geom = arcpy.FromWKB(geom_bytearray, self.srs)
-        smoothed_geom = CA.SmoothLine(arc_geom, arcpy.Geometry(), "PAEK", self.smooth_threshold)
+        smoothed_geom = CA.SmoothLine(arc_geom, arcpy.Geometry(), "PAEK", self.Smoothing_Threshold)
         geom_wkb = bytes(smoothed_geom[0].WKB)
         self.gdf = gpd.GeoDataFrame(geometry=[wkb.loads(geom_wkb)], crs=self.gdf.crs).explode()
 
