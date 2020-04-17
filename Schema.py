@@ -15,7 +15,6 @@ class Schema:
                 'HOR_ACC',
                 'INFORM',
                 'VER_DATE',
-                'SRC_RESOLU',
                 'DATA_SOURC',
                 'EXT_METH',
                 'DAT_SET_CR'
@@ -23,7 +22,8 @@ class Schema:
             'line': [
                 'ATTRIBUTE',
                 'FIPS_ALPHA',
-                'NOAA_Regio'
+                'NOAA_Regio',
+                'SRC_RESOLU'
                 ]
             }
 
