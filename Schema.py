@@ -10,7 +10,7 @@ class Schema:
         self.set_attributes()
         self.atypes = {
             'tile': [
-                'SRC_RESOLU'
+                'SRC_RESOLU',
                 'SOURCE_ID',
                 'SRC_DATE',
                 'HOR_ACC',
