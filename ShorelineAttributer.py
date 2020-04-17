@@ -59,7 +59,6 @@ class ShorelineTile():
 
     def apply_state_region_attributes(self, state_regions):
         if state_regions.shape[0] == 1:
-            self.gdf['SRC_RESOLU'] = 0.0
             self.gdf['ATTRIBUTE'] = None
             self.gdf['FIPS_ALPHA'] = state_regions.iloc[0]['STATE_FIPS']
             self.gdf['NOAA_Regio'] = state_regions.iloc[0]['NOAA_Regio']
@@ -80,7 +79,6 @@ class ShorelineTile():
                 shoreline = shoreline.explode().reset_index().drop(cols_to_drop, axis=1)
 
                 arcpy.AddMessage('attribute state_region shoreline...')
-                shoreline['SRC_RESOLU'] = 0.0
                 shoreline['ATTRIBUTE'] = None
                 shoreline['FIPS_ALPHA'] = state_region['STATE_FIPS']
                 shoreline['NOAA_Regio'] = state_region['NOAA_Regio']

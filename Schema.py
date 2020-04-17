@@ -10,6 +10,7 @@ class Schema:
         self.set_attributes()
         self.atypes = {
             'tile': [
+                'SRC_RESOLU'
                 'SOURCE_ID',
                 'SRC_DATE',
                 'HOR_ACC',
@@ -23,7 +24,6 @@ class Schema:
                 'ATTRIBUTE',
                 'FIPS_ALPHA',
                 'NOAA_Regio',
-                'SRC_RESOLU'
                 ]
             }
 
