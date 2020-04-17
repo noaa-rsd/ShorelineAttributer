@@ -24,8 +24,6 @@ class ShorelineTile():
 
     def set_params(self, params):
         for i, p in enumerate(params):
-            arcpy.AddMessage(p.datatype)
-            arcpy.AddMessage(str(p.value))
             self.__dict__[p.name] = p.value
         arcpy.AddMessage(self.__dict__)
 
