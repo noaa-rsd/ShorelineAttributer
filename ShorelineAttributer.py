@@ -25,8 +25,6 @@ class ShorelineTile():
     def set_params(self, params):
         for i, p in enumerate(params):
             self.__dict__[p.name] = p.value
-        arcpy.AddMessage(self.__dict__)
-
 
     def populate_gdf(self, shp):
         self.path = shp.parent / (arcpy.ValidateTableName(shp.stem) + '.shp')
@@ -42,7 +40,6 @@ class ShorelineTile():
         for attr in self.schema.atypes['tile']:
             scheme_dtype = self.schema.__dict__[attr]['Data type']
             dtypes[attr] = dtype_mapping[scheme_dtype]
-        arcpy.AddMessage(dtypes)
         return dtypes
 
     def apply_tile_attributes(self):
