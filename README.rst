@@ -40,3 +40,5 @@ Point ArcPro to the newly created CUSP Ruler Python environment, as shown below:
 
 2. Obtain/Load Shoreline Attributer toolbox
 +++++++++++++++++++++++++++++++++++++++++++
+
+(coming soon)
