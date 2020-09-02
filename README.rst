@@ -15,6 +15,8 @@ Installing Shoreline Attributer consists of 2 main steps:
 1. create/configure ArcPro Python environment
 +++++++++++++++++++++++++++++++++++++++++++++
 
+  
+
 1.1 Creat Python Environment
 ----------------------------
 
@@ -41,3 +43,5 @@ Point ArcPro to the newly created CUSP Ruler Python environment, as shown below:
 
 2. obtain/load Shoreline Attributer toolbox
 +++++++++++++++++++++++++++++++++++++++++++
+
+  
