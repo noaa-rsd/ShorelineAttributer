@@ -10,19 +10,12 @@ Installing Shoreline Attributer consists of 2 main steps:
 
 1. create/configure ArcPro Python environment
 
-1.1 Create Python Environment
-
-1.2 Install additional Python packages
-
-1.3 Configure ArcPro
-
 2. obtain/load Shoreline Attributer toolbox
-
 
 1. create/configure ArcPro Python environment
 +++++++++++++++++++++++++++++++++++++++++++++
 
-1.1 Creat Python Environment
+1.1 Create Python Environment
 ----------------------------
 
 Clone the default ArcPro Python environment by issueing the following command at an Anaconda prompt:
