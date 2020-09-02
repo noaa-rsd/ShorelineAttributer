@@ -1,23 +1,26 @@
 Shoreline Attributer
---------------------
+====================
 
 Shoreline Attributer is an ArcPro Python tool that attributes line features according to a subset of the CUSP schema.
 
 Installation
-============
+++++++++++++
 
 Installing Shoreline Attributer consists of 2 main steps:
 
 1. create/configure ArcPro Python environment
 
+1.1 Create Python Environment
+
+1.2 Install additional Python packages
+
+1.3 Configure ArcPro
+
 2. obtain/load Shoreline Attributer toolbox
+
 
 1. create/configure ArcPro Python environment
 +++++++++++++++++++++++++++++++++++++++++++++
-
-1.1. Creat Python Environment
-1.2. Install additional Python packages
-1.3. Configure ArcPro
 
 1.1 Creat Python Environment
 ----------------------------
