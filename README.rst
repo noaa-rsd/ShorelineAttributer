@@ -20,17 +20,13 @@ Installing Shoreline Attributer consists of 2 main steps:
 
   conda create --clone "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3" --prefix C:\Users\<user>\AppData\Local\Continuum\anaconda3\envs\shore_att
   
-1.2 Install the Python package Geopandas
+1.2 Install the required Python packages
 
-First, uninstall the default gdal package with the following command (at the Anaconda prompt):
+Type the following command at the Anaconda prompt:
 ::  
 
-  conda uninstall gdal
+  conda install fiona geopandas
   
-Second, install the Geopandas package with the following command (at the Anaconda prompt):
-::
-
-  conda install geopandas
   
 1.3 Configure ArcPro Python environment
 
