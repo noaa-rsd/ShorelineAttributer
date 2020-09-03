@@ -84,15 +84,19 @@ class ShorelineTile():
             self.gdf = gpd.GeoDataFrame(df, geometry='geometry', crs=self.gdf.crs)
 
     def simplify(self):
-        self.gdf['geometry'] = self.gdf.geometry.simplify(tolerance=self.Simplification_Tolerance,
-                                                          preserve_topology=False)
+        geom = self.gdf.geometry.simplify(tolerance=self.Simplification_Tolerance,
+                                          preserve_topology=False)
+        self.gdf['geometry'] = geom
 
     def smooth_esri(self):
+        arcpy.AddMessage(self.gdf)
         geom_bytearray = bytearray(MultiLineString(list(self.gdf.geometry)).wkb)
         arc_geom = arcpy.FromWKB(geom_bytearray, self.srs)
-        smoothed_geom = CA.SmoothLine(arc_geom, arcpy.Geometry(), "PAEK", self.Smoothing_Threshold)
+        smoothed_geom = CA.SmoothLine(arc_geom, arcpy.Geometry(), "PAEK", 
+                                      self.Smoothing_Threshold)
         geom_wkb = bytes(smoothed_geom[0].WKB)
-        self.gdf = gpd.GeoDataFrame(geometry=[wkb.loads(geom_wkb)], crs=self.gdf.crs).explode()
+        geom = [wkb.loads(geom_wkb)]
+        self.gdf = gpd.GeoDataFrame(geometry=geom, crs=self.gdf.crs).explode()
 
     def get_overlapping_state_regions(self, state_regions):
         sindex = state_regions.to_crs(self.gdf.crs).sindex
@@ -109,6 +113,7 @@ class ShorelineTile():
         poly_coords = [(minx, miny), (minx, maxy), 
                        (maxx, maxy), (maxx, miny)]
         return Polygon(poly_coords)
+
 
 def set_env_vars(env_name):
     user_dir = os.path.expanduser('~')
@@ -135,34 +140,34 @@ if __name__ == '__main__':
     schema_path = Path(r'.\shoreline_schema.json')
     schema = Schema(schema_path)
 
-    slt = ShorelineTile(arcpy.GetParameterInfo(), schema)
+    tile = ShorelineTile(arcpy.GetParameterInfo(), schema)
 
     state_regions_path = Path(r'.\support\state_regions.shp')
     state_regions = gpd.read_file(str(state_regions_path))
 
-    shps = [Path(shp) for shp in slt.shp_paths.exportToString().split(';')]
+    shps = [Path(shp) for shp in tile.shp_paths.exportToString().split(';')]
     num_shps = len(shps)
 
     for i, shp in enumerate(shps, 1):
         arcpy.AddMessage('{} ({} of {})...'.format(shp.name, i, num_shps))
-        slt.populate_gdf(shp)
+        tile.populate_gdf(shp)
 
         arcpy.AddMessage('simplifying...')
-        slt.simplify()
+        tile.simplify()
 
         arcpy.AddMessage('smoothing...')
-        slt.smooth_esri()
+        tile.smooth_esri()
 
-        if not slt.gdf.empty:
+        if not tile.gdf.empty:
             arcpy.AddMessage('determining overlapping state NOAA regions...')
-            tile_state_regions = slt.get_overlapping_state_regions(state_regions)
+            tile_state_regions = tile.get_overlapping_state_regions(state_regions)
 
             arcpy.AddMessage('applying state-region attributes...')
-            slt.apply_state_region_attributes(tile_state_regions)
+            tile.apply_state_region_attributes(tile_state_regions)
 
             arcpy.AddMessage('applying tile-wide attributes...')
-            slt.apply_tile_attributes()
+            tile.apply_tile_attributes()
 
             arcpy.AddMessage('outputing attributed gdf...')
-            out_path = Path(slt.out_dir.value) / '{}_ATTRIBUTED_.shp'.format(shp.stem)
-            slt.export(str(out_path))
+            out_path = Path(tile.out_dir.value) / f'{shp.stem}_ATTRIBUTED_.shp'
+            tile.export(str(out_path))
