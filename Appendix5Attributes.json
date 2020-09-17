@@ -1,0 +1,386 @@
+{
+  "INTERIM": {
+    "LINES": {
+      "Shoreline": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 39,
+          "Domain": [
+            "Mean_High_Water",
+            "Mean_High_Water__Approximate",
+            "Apparent__Marsh_Or_Swamp",
+            "Apparent__Mangrove_Or_Cypress",
+            "Bulkhead_Or_Sea_Wall",
+            "Bulkhead_Or_Sea_Wall__Ruins",
+            "Canal__Navigable",
+            "Canal__Navigable__Approximate",
+            "Canal__Non_navigable",
+            "Drydock__Permanent",
+            "Glacier",
+            "Great_Lake_Or_Lake_Or_Pond",
+            "Great_Lake_Or_Lake_Or_Pond__Approximate",
+            "Lock",
+            "Mean_Water_Level",
+            "Ramp",
+            "Rip_Rap",
+            "River_Or_Stream",
+            "River_Or_Stream__Approximate",
+            "Slipway",
+            "Wharf_Or_Quay",
+            "Wharf_Or_Quay__Ruins",
+            "Undetermined",
+            "Undetermined__Approximate",
+            "Shoreline__Alongshore_Feature_Boundary"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Alongshore_Feature": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 45,
+          "Domain": [
+            "Pier",
+            "Pier__Floating",
+            "Pier__Ruins",
+            "Breakwater__Bare",
+            "Breakwater__Covers__Uncovers_Or_Submerged",
+            "Bridge__Fixed",
+            "Bridge__Fixed__Ruins",
+            "Bridge__Fixed__Under_Construction",
+            "Bridge__Footbridge",
+            "Bridge__Footbridge__Ruins",
+            "Bridge__Footbridge__Under_Construction",
+            "Bridge__Opening",
+            "Bridge__Opening__Ruins",
+            "Bridge__Opening__Under_Construction",
+            "Bridge__Pontoon",
+            "Bridge__Pontoon__Ruins",
+            "Bridge__Pontoon__Under_Construction",
+            "Fender",
+            "Gate",
+            "Groin__Bare",
+            "Groin__Covers__Uncovers_Or_Submerged",
+            "Jetty__Bare",
+            "Jetty__Covers__Uncovers_Or_Submerged",
+            "Marine_Railway__Bare",
+            "Marine_Railway__Covers__Uncovers_Or_Submerged",
+            "Training_Wall",
+            "Undetermined_Alongshore_Feature"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Obstruction_Linear": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 37,
+          "Domain": [
+            "Platform__Floating",
+            "Platform__Mineral",
+            "Platform__Observation",
+            "Platform__Ruins",
+            "Platform__Undetermined",
+            "Wreck__Hull__Bare",
+            "Wreck__Hull__Covers__Uncovers",
+            "Wreck__Submerged",
+            "Ruins__Undetermined__Bare",
+            "Ruins__Undetermined__Covers__Uncovers",
+            "Ruins__Undetermined__Submerged",
+            "Obstruction__Bare",
+            "Obstruction__Covers__Uncovers",
+            "Obstruction__Submerged",
+            "Permanently_Docked_Vessel",
+            "Crib__Bare",
+            "Crib__Covers__Uncovers",
+            "Crib__Submerged",
+            "Fish_Facility__Fish_Stakes",
+            "Fish_Facility__Fish_Trap",
+            "Floating_Barrier__Oil_Barrier",
+            "Floating_Barrier__Boom"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Cultural_Feature_Miscellaneous": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 32,
+          "Domain": [
+            "Building",
+            "Tank",
+            "Silo",
+            "Levee_Or_Dike",
+            "Cable__Overhead",
+            "Cable__Submerged",
+            "General_Transport__Ferry_Cable",
+            "General_Transport__Aerial_Cable",
+            "General_Transport__Conveyor_Belt",
+            "Grain_Elevator",
+            "Pipeline__Submerged_Or_Surface",
+            "Pipeline__Overhead",
+            "Dam",
+            "Fort",
+            "Fence",
+            "Wall"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Transportation": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 19,
+          "Domain": [
+            "Road",
+            "Road__Path",
+            "Railroad",
+            "Railroad__Abandoned",
+            "Runway",
+            "Tunnel_Entrance"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Natural_Feature_Miscellaneous": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 27,
+          "Domain": [
+            "Marsh_Or_Swamp__Extent",
+            "Mangrove_Or_Cypress__Extent",
+            "Glacier__Extent",
+            "Cliff_Or_Bluff",
+            "Stream__Perennial",
+            "Stream__Intermittent",
+            "Rapids",
+            "Waterfall",
+            "Sand_Dune",
+            "Lava__Extent",
+            "Landslide__Extent"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Danger_Area": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 31,
+          "Domain": [
+            "Foul",
+            "Ledge_Or_Reef__Covers__Uncovers",
+            "Ledge_Or_Reef__Submerged",
+            "Wreckage__Bare",
+            "Wreckage__Covers__Uncovers",
+            "Wreckage__Submerged",
+            "Shallow_Or_Shoal",
+            "Breakers"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Aquatic_Vegetation_Area": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 5,
+          "Domain": [
+            "Kelp",
+            "Grass"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Contour": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 30,
+          "Domain": [
+            "Depth_Contour",
+            "Depth_Contour__Approximate",
+            "Elevation_Contour",
+            "Elevation_Contour__Approximate"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Cartographic_Limit": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 20,
+          "Domain": [
+            "Feature_Limit",
+            "Low_Visibility_Limit",
+            "Source_Data_Limit"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      }
+    },
+    "POINTS": {
+      "Obstruction_Point": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 29,
+          "Domain": [
+            "Rock__Bare",
+            "Rock__Covers__Uncovers",
+            "Rock__Submerged",
+            "Obstruction__Bare",
+            "Obstruction__Covers__Uncovers",
+            "Obstruction__Submerged",
+            "Coral__Covers__Uncovers",
+            "Coral__Submerged",
+            "Snag_Or_Stump__Submerged",
+            "Wreck__Mast__Bare",
+            "Wreck__Mast__Covers__Uncovers"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Freestanding_Marine_Feature": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 32,
+          "Domain": [
+            "Pile__Bare",
+            "Pile__Covers__Uncovers",
+            "Pile__Submerged",
+            "Dolphin__Bare",
+            "Dolphin__Ruins__Bare",
+            "Dolphin__Ruins__Submerged",
+            "Dolphin__Ruins__Covers__Uncovers",
+            "Tripodal__Bare",
+            "Stake__Bare",
+            "Stake__Covers__Uncovers",
+            "Stake__Submerged"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Landmark": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 16,
+          "Domain": [
+            "Tower",
+            "Water_Tower",
+            "Chimney_Or_Stack",
+            "Cross",
+            "Dish_Antenna",
+            "Dome_Or_Cupola",
+            "Flagpole",
+            "Flare_Stack",
+            "Grain_Elevator",
+            "Mast",
+            "Silo",
+            "Spire_Or_Minaret",
+            "Tank",
+            "Windmill",
+            "Other"
+          ]
+        },
+        "VALUE": {
+          "DataType": "Text",
+          "Width": 20,
+          "Domain": [
+            "Landmark",
+            "Recommended_Landmark"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Aid_To_Navigation": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 24,
+          "Domain": [
+            "Daybeacon",
+            "Marine_Light__Pile",
+            "Marine_Light__Tripodal",
+            "Marine_Light__Tower",
+            "Marine_Light__Lighthouse"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      },
+      "Vertical_Measurement": {
+        "TYPE": {
+          "DataType": "Text",
+          "Width": 21,
+          "Domain": [
+            "Spot_Elevation",
+            "Sounding",
+            "Sounding__Wreck",
+            "Sounding__Rock",
+            "Sounding__Obstruction",
+            "Sounding__Coral"
+          ]
+        },
+        "INFORMATIO": {
+          "DataType": "Text",
+          "Width": 50,
+          "Domain": null
+        }
+      }
+    }
+  },
+  "FINAL": {
+
+  }
+}
