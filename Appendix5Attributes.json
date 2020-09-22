@@ -3,8 +3,9 @@
     "LINES": {
       "Shoreline": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 39,
+          "DomainType": "coded",
           "Domain": [
             "Mean_High_Water",
             "Mean_High_Water__Approximate",
@@ -34,15 +35,17 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Alongshore_Feature": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 45,
+          "DomainType": "coded",
           "Domain": [
             "Pier",
             "Pier__Floating",
@@ -74,15 +77,17 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Obstruction_Linear": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 37,
+          "DomainType": "coded",
           "Domain": [
             "Platform__Floating",
             "Platform__Mineral",
@@ -109,15 +114,17 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Cultural_Feature_Miscellaneous": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 32,
+          "DomainType": "coded",
           "Domain": [
             "Building",
             "Tank",
@@ -138,15 +145,17 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Transportation": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 19,
+          "DomainType": "coded",
           "Domain": [
             "Road",
             "Road__Path",
@@ -157,15 +166,17 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Natural_Feature_Miscellaneous": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 27,
+          "DomainType": "coded",
           "Domain": [
             "Marsh_Or_Swamp__Extent",
             "Mangrove_Or_Cypress__Extent",
@@ -181,15 +192,17 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Danger_Area": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 31,
+          "DomainType": "coded",
           "Domain": [
             "Foul",
             "Ledge_Or_Reef__Covers__Uncovers",
@@ -202,30 +215,34 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Aquatic_Vegetation_Area": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 5,
+          "DomainType": "coded",
           "Domain": [
             "Kelp",
             "Grass"
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Contour": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 30,
+          "DomainType": "coded",
           "Domain": [
             "Depth_Contour",
             "Depth_Contour__Approximate",
@@ -234,15 +251,17 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Cartographic_Limit": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 20,
+          "DomainType": "coded",
           "Domain": [
             "Feature_Limit",
             "Low_Visibility_Limit",
@@ -250,8 +269,9 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       }
@@ -259,8 +279,9 @@
     "POINTS": {
       "Obstruction_Point": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 29,
+          "DomainType": "coded",
           "Domain": [
             "Rock__Bare",
             "Rock__Covers__Uncovers",
@@ -276,15 +297,17 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Freestanding_Marine_Feature": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 32,
+          "DomainType": "coded",
           "Domain": [
             "Pile__Bare",
             "Pile__Covers__Uncovers",
@@ -300,15 +323,17 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Landmark": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 16,
+          "DomainType": "coded",
           "Domain": [
             "Tower",
             "Water_Tower",
@@ -328,23 +353,26 @@
           ]
         },
         "VALUE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 20,
+          "DomainType": "coded",
           "Domain": [
             "Landmark",
             "Recommended_Landmark"
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Aid_To_Navigation": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 24,
+          "DomainType": "coded",
           "Domain": [
             "Daybeacon",
             "Marine_Light__Pile",
@@ -354,15 +382,17 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       },
       "Vertical_Measurement": {
         "TYPE": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 21,
+          "DomainType": "coded",
           "Domain": [
             "Spot_Elevation",
             "Sounding",
@@ -373,14 +403,411 @@
           ]
         },
         "INFORMATIO": {
-          "DataType": "Text",
+          "DataType": "TEXT",
           "Width": 50,
+          "DomainType": null,
           "Domain": null
         }
       }
     }
   },
   "FINAL": {
+    "LINES": {
+      "DATA_SOURC": {
+        "DataType": "TEXT",
+        "Width": "1",
+        "Definition": "Data Source describing the type of imagery used in compilation",
+        "DomainType": "coded",
+        "Domain": [
+          "A AERIAL PHOTOGRAPHY - Film used in stereoplotter",
+          "D DIGITAL PHOTOGRAPHY - Scanned from film or from digital camera",
+          "M MULTIPLE SOURCES - Other sources i.e. Satellite, LIDAR, IFSAR, HyperSpectral Scanner, etc."
+        ]
+      },
 
+      "FEATURE": {
+        "DataType": "SHORT",
+        "Width": "5",
+        "Definition": "Cartographic feature code number from the Coastal Cartographic Object Attribute Source Table's (C COAST) attribution scheme. (See Attachment E for the assigned numbers associated with each C_COAST attribute)",
+        "DomainType": "range",
+        "Domain": [ 1, 212 ]
+      },
+
+      "EXTRACT_TE": {
+        "DataType": "TEXT",
+        "Width": "1",
+        "Definition": "Technology used to extract feature from source",
+        "DomainType": "coded",
+        "Domain": [
+          "A ANALOG PLOTTER",
+          "B ANALYTICAL PLOTTER",
+          "S SOFTCOPY"
+        ]
+      },
+
+      "RESOLUTION": {
+        "DataType": "SHORT",
+        "Width": "5",
+        "Definition": "Integer indicating level of generalization (use '0' = full resolution). For this SOW the value of this attribute shall always equal 0.",
+        "DomainType": "range",
+        "Domain": [ 0, 5 ]
+      },
+
+      "CLASS": {
+        "DataType": "TEXT",
+        "Width": "32",
+        "Definition": "C COAST Feature class",
+        "DomainType": "coded",
+        "Domain": [
+          "SHORELINE",
+          "ALONGSHORE FEATURE",
+          "OBSTRUCTION LINEAR",
+          "CULTURAL FEATURE MISCELLANEOUS",
+          "TRANSPORTATION",
+          "NATURAL FEATURE MISCELLANEOUS",
+          "DANGER AREA",
+          "AQUATIC VEGETATION AREA",
+          "CONTOUR",
+          "CARTOGRAPHIC LIMIT"
+        ]
+      },
+
+      "ATTRIBUTE": {
+        "DataType": "TEXT",
+        "Width": "50",
+        "Definition": "C COAST Feature attribute description",
+        "DomainType": "coded",
+        "Domain": [
+          "Man made.Bulkhead Or Sea Wall",
+          "Man made.Bulkhead Or Sea Wall.Ruins",
+          "Man made.Canal.Navigable",
+          "Man made.Canal.Navigable.Approximate",
+          "Man made.Canal.Non navigable",
+          "Man made.Drydock.Permanent",
+          "Man made.Lock",
+          "Man made.Ramp",
+          "Man made.Rip Rap",
+          "Man made.Slipway",
+          "Man made.Wharf Or Quay",
+          "Man made.Wharf Or Quay.Ruins",
+          "Natural.Apparent.Marsh Or Swamp",
+          "Natural.Apparent.Mangrove Or Cypress",
+          "Natural.Glacier",
+          "Natural.Great Lake Or Lake Or Pond",
+          "Natural.Great Lake Or Lake Or Pond.Approximate",
+          "Natural.Mean High Water",
+          "Natural.Mean High Water.Approximate",
+          "Natural.Mean Water Level",
+          "Natural.River Or Stream",
+          "Natural.River Or Stream.Approximate",
+          "Undetermined",
+          "Undetermined.Approximate",
+          "Shoreline/Alongshore Feature Boundary",
+          "Breakwater.Bare",
+          "Breakwater.Covers/Uncovers Or Submerged",
+          "Bridge.Fixed",
+          "Bridge.Fixed.Ruins",
+          "Bridge.Fixed.Under Construction",
+          "Bridge.Footbridge",
+          "Bridge.Footbridge.Ruins",
+          "Bridge.Footbridge.Under Construction",
+          "Bridge.Opening",
+          "Bridge.Opening.Ruins",
+          "Bridge.Opening.Under Construction",
+          "Bridge.Pontoon",
+          "Bridge.Pontoon.Ruins",
+          "Bridge.Pontoon.Under Construction",
+          "Fender",
+          "Gate",
+          "Groin.Bare",
+          "Groin.Covers/Uncovers Or Submerged",
+          "Jetty.Bare",
+          "Jetty.Covers/Uncovers Or Submerged",
+          "Marine Railway.Bare",
+          "Marine Railway.Covers/Uncovers Or Submerged",
+          "Pier",
+          "Pier.Floating",
+          "Pier.Ruins",
+          "Training Wall",
+          "Undetermined Alongshore Feature",
+          "Crib.Bare",
+          "Crib.Covers/Uncovers",
+          "Crib.Submerged",
+          "Fish Facility.Fish Stakes",
+          "Fish Facility.Fish Trap",
+          "Floating Barrier.Oil Barrier",
+          "Floating Barrier.Boom",
+          "Obstruction.Bare",
+          "Obstruction.Covers/Uncovers",
+          "Obstruction.Submerged",
+          "Platform.Floating",
+          "Platform.Mineral",
+          "Platform.Observation",
+          "Platform.Ruins",
+          "Platform.Undetermined",
+          "Permanently Docked Vessel",
+          "Ruins.Undetermined.Bare",
+          "Ruins.Undetermined.Covers/Uncovers",
+          "Ruins.Undetermined.Submerged",
+          "Wreck.Hull.Bare",
+          "Wreck.Hull.Covers/Uncovers",
+          "Wreck.Submerged",
+          "Building",
+          "Cable.Overhead",
+          "Cable.Submerged",
+          "Dam",
+          "Fence",
+          "Fort",
+          "General Transport.Aerial Cable",
+          "General Transport.Conveyor Belt",
+          "General Transport.Ferry Cable",
+          "Grain Elevator",
+          "Levee Or Dike",
+          "Pipeline.Submerged Or Surface",
+          "Pipeline.Overhead",
+          "Silo",
+          "Tank",
+          "Wall",
+          "Road",
+          "Road.Path",
+          "Railroad",
+          "Railroad.Abandoned",
+          "Runway",
+          "Tunnel Entrance",
+          "Cliff Or Bluff",
+          "Glacier.Extent",
+          "Landslide.Extent",
+          "Lava.Extent",
+          "Mangrove Or Cypress.Extent",
+          "Marsh Or Swamp.Extent",
+          "Rapids",
+          "Sand Dune",
+          "Stream.Intermittent",
+          "Stream.Perennial",
+          "Waterfall",
+          "Breakers",
+          "Foul",
+          "Ledge Or Reef.Covers/Uncovers",
+          "Ledge Or Reef.Submerged",
+          "Shallow Or Shoal",
+          "Wreckage.Bare",
+          "Wreckage.Covers/Uncovers",
+          "Wreckage.Submerged",
+          "Kelp",
+          "Grass",
+          "Depth Contour",
+          "Depth Contour.Approximate",
+          "Elevation Contour",
+          "Elevation Contour.Approximate",
+          "Feature Limit",
+          "Low Visibility Limit",
+          "Source Data Limit"
+        ]
+      },
+
+      "INFORM": {
+        "DataType": "TEXT",
+        "Width": "50 ",
+        "Definition": "Ancillary Information (e.g. Describing or defining a feature). For certain features specific rules govern the exact text that shall be entered in this attribution field. See Attachment K.",
+        "DomainType": null,
+        "Domain": null
+      },
+
+      "HOR_ACC": {
+        "DataType": "TEXT",
+        "Width": "6  ",
+        "Definition": "Horizontal positional accuracy (meters) as reported in the PCR (see Attachment L)",
+        "DomainType": "range",
+        "Domain": [ 0, 200 ]
+      },
+
+      "SRC_DATE": {
+        "DataType": "TEXT",
+        "Width": "8",
+        "Definition": "Date of source imagery (YYYYMMDD) for the feature",
+        "DomainType": "range",
+        "Domain": [ 18340101, "Present" ]
+      },
+
+      "SOURCE_ID ": {
+        "DataType": "TEXT",
+        "Width": "8",
+        "Definition": "Geographic Cell Identifier Number, or GC number (e.g. GC12345). The value of this attribute will be assigned by NGS upon granting permission to proceed with compilation.",
+        "DomainType": null,
+        "Domain": null
+      },
+
+      "EXT_METH ": {
+        "DataType": "TEXT",
+        "Width": "1",
+        "Definition": "Method used to extract feature from source",
+        "DomainType": "coded",
+        "Domain": [
+          "M MONO",
+          "S STEREO"
+        ]
+      }
+
+    },
+    "POINTS": {
+      "DATA_SOURC": {
+        "DataType": "TEXT",
+        "Width": 1,
+        "Definition": "Data Source describing the type of imagery used in compilation",
+        "DomainType": "coded",
+        "Domain": [
+          "A AERIAL PHOTOGRAPHY - Film used in stereoplotter",
+          "D DIGITAL PHOTOGRAPHY - Scanned from film or from digital camera",
+          "M MULTIPLE SOURCES - Other sources i.e. Satellite, LIDAR, IFSAR, HyperSpectral Scanner, etc."
+        ]
+      },
+      "FEATURE": {
+        "DataType": "SHORT",
+        "Width": 5,
+        "Definition": "Cartographic feature code number from the Coastal Cartographic Object Attribute Source Table's (C COAST) attribution scheme. See Attachment E for the assigned numbers associated with each C_COAST attribute",
+        "DomainType": "range",
+        "Domain": [ 1, 212 ]
+      },
+      "EXTRACT_TE": {
+        "DataType": "TEXT",
+        "Width": 1,
+        "Definition": "Technology used to extract feature from source",
+        "DomainType": "coded",
+        "Domain": [
+          "A ANALOG PLOTTER",
+          "B ANALYTICAL PLOTTER",
+          "S SOFTCOPY"
+        ]
+      },
+      "RESOLUTION": {
+        "DataType": "SHORT",
+        "Width": 5,
+        "Definition": "Integerindicating level of generalization (use 0 = full resolution). For this SOW the value of this attribute shall always equal 0.",
+        "DomainType": "range",
+        "Domain": [ 0, 5 ]
+      },
+      "CLASS": {
+        "DataType": "TEXT",
+        "Width": 32,
+        "Definition": "C COAST Feature class",
+        "DomainType": "coded",
+        "Domain": [
+          "OBSTRUCTION POINT",
+          "FREESTANDING MARINE FEATURE",
+          "LANDMARK",
+          "AID TO NAVIGATION",
+          "VERTICAL MEASUREMENT"
+        ]
+      },
+      "ATTRIBUTE": {
+        "DataType": "TEXT",
+        "Width": 50,
+        "Definition": "C COAST Feature attribute description",
+        "DomainType": "coded",
+        "Domain": [
+          "Coral.Covers/Uncovers",
+          "Coral.Submerged",
+          "Rock.Bare",
+          "Rock.Covers/Uncovers",
+          "Rock.Submerged",
+          "Snag Or Stump.Submerged",
+          "Obstruction.Bare",
+          "Obstruction.Covers/Uncovers",
+          "Obstruction.Submerged",
+          "Wreck.Mast.Bare",
+          "Wreck.Mast.Covers/Uncovers",
+          "Dolphin.Bare",
+          "Dolphin.Ruins.Bare",
+          "Dolphin.Ruins.Submerged",
+          "Dolphin.Ruins.Covers/Uncovers",
+          "Pile.Bare",
+          "Pile.Covers/Uncovers",
+          "Pile.Submerged",
+          "Stake.Bare",
+          "Stake.Covers/Uncovers",
+          "Stake.Submerged",
+          "Tripodal.Bare",
+          "Chimney Or Stack",
+          "Chimney Or Stack.Recommended  Landmark",
+          "Cross",
+          "Cross.Recommended Landmark",
+          "Dish Antenna",
+          "Dish Antenna.Recommended Landmark",
+          "Dome Or Cupola",
+          "Dome Or Cupola.Recommended Landmark",
+          "Flagpole",
+          "Flagpole.Recommended Landmark",
+          "Flare Stack",
+          "Flare Stack.Recommended Landmark",
+          "Grain Elevator",
+          "Grain Elevator.Recommended Landmark",
+          "Mast",
+          "Mast.Recommended Landmark",
+          "Other",
+          "Other.Recommended Landmark",
+          "Silo",
+          "Silo.Recommended Landmark",
+          "Spire Or Minaret",
+          "Spire Or Minaret.Recommended Landmark",
+          "Tank",
+          "Tank.Recommended Landmark",
+          "Tower",
+          "Tower.Recommended Landmark",
+          "Water Tower",
+          "Water Tower.Recommended Landmark",
+          "Windmill",
+          "Windmill.Recommended Landmark",
+          "Daybeacon",
+          "Marine Light.Lighthouse",
+          "Marine Light.Pile",
+          "Marine Light.Tower",
+          "Marine Light.Tripodal",
+          "Sounding",
+          "Sounding.Coral",
+          "Sounding.Obstruction",
+          "Sounding.Rock",
+          "Sounding.Wreck",
+          "Spot Elevation"
+        ]
+      },
+      "INFORM": {
+        "DataType": "TEXT",
+        "Width": 50,
+        "Definition": "Ancillary Information (e.g. Describing or defining a feature). For certain features specific rules govern the exact text that shall be entered in this attribution field. See Attachment K.",
+        "DomainType": null,
+        "Domain": null
+      },
+      "HOR_ACC": {
+        "DataType": "FLOAT",
+        "Width": 6,
+        "Definition": "Horizontal positional accuracy (meters) as reported in the PCR (see Attachment L)",
+        "DomainType": "range",
+        "Domain": [ 0, 200 ]
+      },
+      "SRC_DATE": {
+        "DataType": "DATE",
+        "Width": 8,
+        "Definition": "Date of source imagery (YYYYMMDD) for the feature",
+        "DomainType": "range",
+        "Domain": [ 18340101, "Present" ]
+      },
+      "SOURCE_ID": {
+        "DataType": "TEXT",
+        "Width": 8,
+        "Definition": "Geographic Cell Identifier Number, or GC number (e.g. GC12345). The value of this attribute will be assigned by NGS upon granting permission to proceed with compilation.",
+        "DomainType": null,
+        "Domain": null
+      },
+      "EXT_METH": {
+        "DataType": "TEXT",
+        "Width": 1,
+        "Definition": "Method used to extract feature from source",
+        "DomainType": "coded",
+        "Domain": [
+          "M MONO",
+          "S STEREO"
+        ]
+      }
+    }
   }
 }
