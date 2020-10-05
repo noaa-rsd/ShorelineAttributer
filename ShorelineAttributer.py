@@ -1,4 +1,5 @@
 import os
+import numpy as np
 import pandas as pd
 import geopandas as gpd
 from pathlib import Path
@@ -34,54 +35,48 @@ class ShorelineTile():
     def export(self, out_path):
         self.gdf.to_file(out_path, driver='ESRI Shapefile')
 
-    def get_dtypes(self):
-        dtype_mapping = {'Text': str, 'Float': float}
+    def apply_attributes(self):
+        dtype_mapping = {'TEXT': 'string', 
+                         'SHORT': 'Int64',
+                         'FLOAT': 'float',
+                         'DATE': 'string'}
+
+        cols = ['geometry'] + self.schema.atypes['tile']
+        self.gdf = self.gdf.reindex(columns=cols)
+
+        {'properties': OrderedDict([
+            ('level_0', 'int:18'), 
+            ('level_1', 'int:18'), 
+            ('DATA_SOURC', 'str:80'), 
+            ('FEATURE', 'int:18'), 
+            ('EXTRACT_TE', 'str:80'), 
+            ('RESOLUTION', 'int:18'), 
+            ('CLASS', 'str:80'), 
+            ('ATTRIBUTE', 'str:80'), 
+            ('INFORM', 'str:80'), 
+            ('HOR_ACC', 'float:24.15'), 
+            ('SRC_DATE', 'str:80'), 
+            ('SOURCE_ID', 'str:80'), 
+            ('EXT_METH', 'str:80')]), 
+         'geometry': 'LineString'}
+
+
         dtypes = {}
+        arcpy.AddMessage(self.__dict__)
         for attr in self.schema.atypes['tile']:
-            scheme_dtype = self.schema.__dict__[attr]['Data type']
+            attr_val = self.__dict__[attr]
+            arcpy.AddMessage(f'populating attribute {attr}: {attr_val}')
+            scheme_dtype = self.schema.__dict__[attr]['DataType']
             dtypes[attr] = dtype_mapping[scheme_dtype]
-        return dtypes
+            if attr_val:
+                if attr != 'SRC_DATE':
+                    self.gdf[attr] = attr_val
+                elif attr == 'SRC_DATE':  # dtype is datetime64 (can't be)
+                    self.gdf[attr] = datetime.strftime(self.__dict__[attr], '%Y%m%d')
 
-    def apply_tile_attributes(self):
-        for attr in self.schema.atypes['tile']:
-            if attr != 'SRC_DATE':
-                self.gdf[attr] = self.__dict__[attr]
-            elif attr == 'SRC_DATE':  # dytpe is datetime64 (can't be)
-                self.gdf[attr] = datetime.strftime(self.__dict__[attr], '%Y%m%d')
-
-        df = self.gdf.astype(self.get_dtypes())
+        arcpy.AddMessage(dtypes)
+        df = self.gdf.astype(dtypes)
         self.gdf = gpd.GeoDataFrame(df, geometry='geometry', crs=self.gdf.crs)
-
-    def apply_state_region_attributes(self, state_regions):
-        if state_regions.shape[0] == 1:
-            self.gdf['ATTRIBUTE'] = None
-            self.gdf['FIPS_ALPHA'] = state_regions.iloc[0]['STATE_FIPS']
-            self.gdf['NOAA_Regio'] = state_regions.iloc[0]['NOAA_Regio']
-
-        elif state_regions.shape[0] > 1:
-            shoreline_gdfs = []
-            for i, state_region in state_regions.iterrows():
-                arcpy.AddMessage('get shoreline intersecting state_region...')
-                sindex = self.gdf.sindex
-                intersect_idx = list(sindex.intersection(state_region.geometry.bounds))
-                possible_shoreline = self.gdf.iloc[intersect_idx]
-
-                arcpy.AddMessage('clip intersecting shoreline with region...')
-                multilinestring = MultiLineString(list(possible_shoreline.geometry))
-                shoreline = multilinestring.intersection(state_region.geometry)
-                shoreline = gpd.GeoDataFrame(geometry=[shoreline], crs=self.gdf.crs)
-                cols_to_drop = ['level_0', 'level_1']
-                shoreline = shoreline.explode().reset_index().drop(cols_to_drop, axis=1)
-
-                arcpy.AddMessage('attribute state_region shoreline...')
-                shoreline['ATTRIBUTE'] = None
-                shoreline['FIPS_ALPHA'] = state_region['STATE_FIPS']
-                shoreline['NOAA_Regio'] = state_region['NOAA_Regio']
-
-                shoreline_gdfs.append(shoreline)
-
-            df = pd.concat(shoreline_gdfs, ignore_index=True)
-            self.gdf = gpd.GeoDataFrame(df, geometry='geometry', crs=self.gdf.crs)
 
     def simplify(self):
         geom = self.gdf.geometry.simplify(tolerance=self.Simplification_Tolerance,
@@ -97,12 +92,6 @@ class ShorelineTile():
         geom_wkb = bytes(smoothed_geom[0].WKB)
         geom = [wkb.loads(geom_wkb)]
         self.gdf = gpd.GeoDataFrame(geometry=geom, crs=self.gdf.crs).explode()
-
-    def get_overlapping_state_regions(self, state_regions):
-        sindex = state_regions.to_crs(self.gdf.crs).sindex
-        extents = self.get_tile_extents()
-        region_states_idx = list(sindex.intersection(extents.bounds))
-        return state_regions.iloc[region_states_idx]
 
     def get_tile_extents(self):
         bounds = self.gdf.geometry.bounds
@@ -137,13 +126,10 @@ if __name__ == '__main__':
     set_env_vars('shore_att')
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-    schema_path = Path(r'.\shoreline_schema.json')
+    schema_path = Path(r'.\Appendix5Attributes.json')
     schema = Schema(schema_path)
 
     tile = ShorelineTile(arcpy.GetParameterInfo(), schema)
-
-    state_regions_path = Path(r'.\support\state_regions.shp')
-    state_regions = gpd.read_file(str(state_regions_path))
 
     shps = [Path(shp) for shp in tile.shp_paths.exportToString().split(';')]
     num_shps = len(shps)
@@ -159,14 +145,8 @@ if __name__ == '__main__':
         tile.smooth_esri()
 
         if not tile.gdf.empty:
-            arcpy.AddMessage('determining overlapping state NOAA regions...')
-            tile_state_regions = tile.get_overlapping_state_regions(state_regions)
-
-            arcpy.AddMessage('applying state-region attributes...')
-            tile.apply_state_region_attributes(tile_state_regions)
-
             arcpy.AddMessage('applying tile-wide attributes...')
-            tile.apply_tile_attributes()
+            tile.apply_attributes()
 
             arcpy.AddMessage('outputing attributed gdf...')
             out_path = Path(tile.out_dir.value) / f'{shp.stem}_ATTRIBUTED_.shp'

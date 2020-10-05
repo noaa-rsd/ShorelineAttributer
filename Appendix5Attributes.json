@@ -607,15 +607,15 @@
 
       "INFORM": {
         "DataType": "TEXT",
-        "Width": "50 ",
+        "Width": "50",
         "Definition": "Ancillary Information (e.g. Describing or defining a feature). For certain features specific rules govern the exact text that shall be entered in this attribution field. See Attachment K.",
         "DomainType": null,
         "Domain": null
       },
 
       "HOR_ACC": {
-        "DataType": "TEXT",
-        "Width": "6  ",
+        "DataType": "FLOAT",
+        "Width": "6",
         "Definition": "Horizontal positional accuracy (meters) as reported in the PCR (see Attachment L)",
         "DomainType": "range",
         "Domain": [ 0, 200 ]
@@ -629,7 +629,7 @@
         "Domain": [ 18340101, "Present" ]
       },
 
-      "SOURCE_ID ": {
+      "SOURCE_ID": {
         "DataType": "TEXT",
         "Width": "8",
         "Definition": "Geographic Cell Identifier Number, or GC number (e.g. GC12345). The value of this attribute will be assigned by NGS upon granting permission to proceed with compilation.",
@@ -637,7 +637,7 @@
         "Domain": null
       },
 
-      "EXT_METH ": {
+      "EXT_METH": {
         "DataType": "TEXT",
         "Width": "1",
         "Definition": "Method used to extract feature from source",

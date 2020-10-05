@@ -1,6 +1,7 @@
 import json
 import os
 from pathlib import Path
+import arcpy
 
 
 class Schema:
@@ -10,37 +11,33 @@ class Schema:
         self.set_attributes()
         self.atypes = {
             'tile': [
-                'SRC_RESOLU',
-                'SOURCE_ID',
-                'SRC_DATE',
-                'HOR_ACC',
-                'INFORM',
-                'VER_DATE',
                 'DATA_SOURC',
-                'EXT_METH',
-                'DAT_SET_CR'
-                ],
-            'line': [
+                'FEATURE',
+                'EXTRACT_TE',
+                'RESOLUTION',
+                'CLASS',
                 'ATTRIBUTE',
-                'FIPS_ALPHA',
-                'NOAA_Regio',
-                ]
+                'INFORM',
+                'HOR_ACC',
+                'SRC_DATE',
+                'SOURCE_ID',
+                'EXT_METH'
+                ],
+            'line': []
             }
-
 
     def __str__(self):
         return json.dumps(self.__dict__, indent=1)
 
     def set_attributes(self):
         with open(self.path, 'r') as j:
-            self.__dict__ = json.load(j)
+            gc_schema = json.load(j)
+            self.__dict__ = gc_schema['FINAL']['LINES']
 
 
 if __name__ == '__main__':
     cwd = os.path.dirname(os.path.realpath(__file__))
     os.chdir(cwd)
 
-    schema_path = Path(r'.\shoreline_schema.json')
-
+    schema_path = Path(r'.\Appendix5Attributes.json')
     schema = Schema(schema_path)
-    print(schema.atypes)

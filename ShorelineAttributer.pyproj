@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Appendix5Attributes.json" />
+    <Content Include="shoreline_schema.json" />
     <Content Include="support\installation.png" />
   </ItemGroup>
   <ItemGroup>
