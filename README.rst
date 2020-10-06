@@ -1,9 +1,9 @@
 Shoreline Attributer
 ====================
 
-.. image:: ./support/GUI.png
-
 Shoreline Attributer is an ArcPro Python tool that attributes line features according the NOAA Remote Sensing Division GC shapefile schema.
+
+.. image:: ./support/GUI.png
 
 Installation
 ++++++++++++
