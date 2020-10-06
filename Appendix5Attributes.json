@@ -419,9 +419,9 @@
         "Definition": "Data Source describing the type of imagery used in compilation",
         "DomainType": "coded",
         "Domain": [
-          "A AERIAL PHOTOGRAPHY - Film used in stereoplotter",
-          "D DIGITAL PHOTOGRAPHY - Scanned from film or from digital camera",
-          "M MULTIPLE SOURCES - Other sources i.e. Satellite, LIDAR, IFSAR, HyperSpectral Scanner, etc."
+          "A: AERIAL PHOTOGRAPHY - Film used in stereoplotter",
+          "D: DIGITAL PHOTOGRAPHY - Scanned from film or from digital camera",
+          "M: MULTIPLE SOURCES - Other sources i.e. Satellite, LIDAR, IFSAR, HyperSpectral Scanner, etc."
         ]
       },
 
@@ -439,9 +439,9 @@
         "Definition": "Technology used to extract feature from source",
         "DomainType": "coded",
         "Domain": [
-          "A ANALOG PLOTTER",
-          "B ANALYTICAL PLOTTER",
-          "S SOFTCOPY"
+          "A: ANALOG PLOTTER",
+          "B: ANALYTICAL PLOTTER",
+          "S: SOFTCOPY"
         ]
       },
 
@@ -643,8 +643,8 @@
         "Definition": "Method used to extract feature from source",
         "DomainType": "coded",
         "Domain": [
-          "M MONO",
-          "S STEREO"
+          "M: MONO",
+          "S: STEREO"
         ]
       }
 

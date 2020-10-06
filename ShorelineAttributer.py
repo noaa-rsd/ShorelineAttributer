@@ -1,4 +1,5 @@
 import os
+from collections import OrderedDict
 import numpy as np
 import pandas as pd
 import geopandas as gpd
@@ -20,6 +21,8 @@ class ShorelineTile():
         self.path = None
         self.srs = None
         self.gdf = None
+        self.lut_gdf = self.get_ccoast_lut()
+        arcpy.AddMessage(self.lut_gdf)
         #self.Simplification_Tolerance from self.set_params
         #self.Smoothing_Threshold from self.set_params
 
@@ -33,7 +36,36 @@ class ShorelineTile():
         self.gdf = gpd.read_file(str(shp))
 
     def export(self, out_path):
-        self.gdf.to_file(out_path, driver='ESRI Shapefile')
+        shp_schema = {
+            'properties': OrderedDict([
+                ('DATA_SOURC', 'str:1'), 
+                ('FEATURE', 'int:5'), 
+                ('EXTRACT_TE', 'str:1'), 
+                ('RESOLUTION', 'int:5'), 
+                ('CLASS', 'str:32'), 
+                ('ATTRIBUTE', 'str:50'), 
+                ('INFORM', 'str:50'), 
+                ('HOR_ACC', 'float:6.4'), 
+                ('SRC_DATE', 'str:8'), 
+                ('SOURCE_ID', 'str:8'), 
+                ('EXT_METH', 'str:1')]),
+            'geometry': 'LineString'}
+        arcpy.AddMessage(self.gdf)
+        arcpy.AddMessage(self.gdf.columns)
+        self.gdf = self.gdf.reset_index(drop=True)
+        self.gdf.to_file(out_path, driver='ESRI Shapefile', schema=shp_schema)
+
+    def get_ccoast_lut(c):
+        cwd = os.path.dirname(os.path.realpath(__file__))
+        os.chdir(cwd)
+        lut_path = Path(r'.\ccoast_lut - sow15.xlsx')
+        return pd.read_excel(lut_path)
+
+    def get_ccoast_code(self, attr, val):
+        return self.lut_gdf.loc[self.lut_gdf[attr] == val, 'CODE'].iloc[0]
+
+    def get_ccoast_class(self, attr, val):
+        return self.lut_gdf.loc[self.lut_gdf[attr] == val, 'CLASS'].iloc[0]
 
     def apply_attributes(self):
         dtype_mapping = {'TEXT': 'string', 
@@ -44,35 +76,30 @@ class ShorelineTile():
         cols = ['geometry'] + self.schema.atypes['tile']
         self.gdf = self.gdf.reindex(columns=cols)
 
-        {'properties': OrderedDict([
-            ('level_0', 'int:18'), 
-            ('level_1', 'int:18'), 
-            ('DATA_SOURC', 'str:80'), 
-            ('FEATURE', 'int:18'), 
-            ('EXTRACT_TE', 'str:80'), 
-            ('RESOLUTION', 'int:18'), 
-            ('CLASS', 'str:80'), 
-            ('ATTRIBUTE', 'str:80'), 
-            ('INFORM', 'str:80'), 
-            ('HOR_ACC', 'float:24.15'), 
-            ('SRC_DATE', 'str:80'), 
-            ('SOURCE_ID', 'str:80'), 
-            ('EXT_METH', 'str:80')]), 
-         'geometry': 'LineString'}
-
-
         dtypes = {}
         arcpy.AddMessage(self.__dict__)
         for attr in self.schema.atypes['tile']:
-            attr_val = self.__dict__[attr]
-            arcpy.AddMessage(f'populating attribute {attr}: {attr_val}')
+            val = self.__dict__[attr]
+            arcpy.AddMessage(f'populating attribute {attr}: {val}')
             scheme_dtype = self.schema.__dict__[attr]['DataType']
             dtypes[attr] = dtype_mapping[scheme_dtype]
-            if attr_val:
-                if attr != 'SRC_DATE':
-                    self.gdf[attr] = attr_val
+            if val:
+                if attr == 'ATTRIBUTE':
+                    self.gdf[attr] = val
+                    self.gdf['FEATURE'] = self.get_ccoast_code(attr, val)
+                    self.gdf['CLASS'] = self.get_ccoast_class(attr, val) 
                 elif attr == 'SRC_DATE':  # dtype is datetime64 (can't be)
                     self.gdf[attr] = datetime.strftime(self.__dict__[attr], '%Y%m%d')
+                elif attr == 'EXTRACT_TE':
+                    self.gdf[attr] = val.split(':')[0]
+                elif attr == 'DATA_SOURC':
+                    self.gdf[attr] = val.split(':')[0]
+                elif attr == 'EXT_METH':
+                    self.gdf[attr] = val.split(':')[0]                
+                else:
+                    self.gdf[attr] = val
+            elif attr == 'RESOLUTION' or attr == 'HOR_ACC':
+                self.gdf[attr] = -1
 
         arcpy.AddMessage(dtypes)
         df = self.gdf.astype(dtypes)
@@ -84,6 +111,7 @@ class ShorelineTile():
         self.gdf['geometry'] = geom
 
     def smooth_esri(self):
+        self.gdf = self.gdf.drop(columns=['ID'])
         arcpy.AddMessage(self.gdf)
         geom_bytearray = bytearray(MultiLineString(list(self.gdf.geometry)).wkb)
         arc_geom = arcpy.FromWKB(geom_bytearray, self.srs)
