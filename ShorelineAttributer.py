@@ -21,6 +21,7 @@ class ShorelineTile():
         self.path = None
         self.srs = None
         self.gdf = None
+        self.numeric_nodata = -1
         self.lut_gdf = self.get_ccoast_lut()
         arcpy.AddMessage(self.lut_gdf)
         #self.Simplification_Tolerance from self.set_params
@@ -99,7 +100,7 @@ class ShorelineTile():
                 else:
                     self.gdf[attr] = val
             elif attr == 'RESOLUTION' or attr == 'HOR_ACC':
-                self.gdf[attr] = -1
+                self.gdf[attr] = self.numeric_nodata
 
         arcpy.AddMessage(dtypes)
         df = self.gdf.astype(dtypes)
