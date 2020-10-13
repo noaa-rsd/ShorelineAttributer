@@ -167,16 +167,20 @@ if __name__ == '__main__':
         arcpy.AddMessage('{} ({} of {})...'.format(shp.name, i, num_shps))
         tile.populate_gdf(shp)
 
-        arcpy.AddMessage('simplifying...')
-        tile.simplify()
-
-        arcpy.AddMessage('smoothing...')
-        tile.smooth_esri()
-
         if not tile.gdf.empty:
-            arcpy.AddMessage('applying tile-wide attributes...')
-            tile.apply_attributes()
+            arcpy.AddMessage('simplifying...')
+            tile.simplify()
+            arcpy.AddMessage('smoothing...')
+            tile.smooth_esri()
 
-            arcpy.AddMessage('outputing attributed gdf...')
-            out_path = Path(tile.out_dir.value) / f'{shp.stem}_ATTRIBUTED_.shp'
-            tile.export(str(out_path))
+            if not tile.gdf.empty:
+                arcpy.AddMessage('applying tile-wide attributes...')
+                tile.apply_attributes()
+                arcpy.AddMessage('outputing attributed gdf...')
+                out_path = Path(tile.out_dir.value) / f'{shp.stem}_ATTRIBUTED_.shp'
+                tile.export(str(out_path))
+            else:
+                arcpy.AddMessage('simplified/smoothed shp has no line features')
+        else:
+            arcpy.AddMessage(f'{shp.name} has no line features')
+
